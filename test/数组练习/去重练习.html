@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+</head>
+
+<body>
+
+    <!-- IMPORT JS -->
+    <!-- <script>
+        var obj = {
+            name: 'jim'
+        };
+        var haha = 'name';
+        // console.log(obj.haha);//=>undefind
+        // console.log(obj[haha]);//=>jim
+    </script> -->
+    <script>
+        var arr = [ 2, 13, 25, 8, 9, 2, 4, 45, 6, 1, 2, 3,1,2,3,4,5,6];
+        console.log(arr[arr.length-1]);
+        function unique(ary) {
+            // 创建一个空对象
+            var obj = {};
+            // 遍历要去重的数组
+            for (var i = 0; i < ary.length; i++) {
+                var item = ary[i];
+                if (obj[item] !== undefined) {
+                    // 基于splice实现删除性能不好，当前项被删以后，后面每一项的索引都会向前提一位，如果后面内容过多，一定影响性能
+                    // 解决方法：把数组最后面的值提到当前位置，数组长度减一
+                    // arr.splice(i,1);
+                    // 
+                    ary[i] = ary[ary.length - 1];
+                    ary.length--;
+                    i--;
+                    continue;
+                }
+                obj[item] = item;
+            }
+            return ary;
+        }
+        // var ary = [4, 6, 2, 12, 323, 43, 123, 345567, 2, 4, 52, 23, 11231, 1];
+        console.log(unique(arr));
+    </script>
+</body>
+
+</html>
